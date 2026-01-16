@@ -1,23 +1,26 @@
     /* PAGE BASICS */
-    html, body {
+    html,
+    body {
       height: 100%;
       margin: 0;
       background: #f8f9fa;
-      overflow-x: hidden; /* keep one scrolling area (page-content) */
-      -webkit-font-smoothing:antialiased;
+      overflow-x: hidden;
+      /* keep one scrolling area (page-content) */
+      -webkit-font-smoothing: antialiased;
       font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
     }
 
     /* NAVBAR (light glass + subtle blur) */
     .navbar-glass {
-      background: rgba(255,255,255,0.65);
+      background: rgba(255, 255, 255, 0.65);
       backdrop-filter: blur(4px);
       -webkit-backdrop-filter: blur(4px);
-      border-bottom: 1px solid rgba(0,0,0,0.04);
-      box-shadow: 0 1px 10px rgba(0,0,0,0.03);
+      border-bottom: 1px solid rgba(0, 0, 0, 0.04);
+      box-shadow: 0 1px 10px rgba(0, 0, 0, 0.03);
       height: 64px;
-      z-index: 1000; /* keep navbar under the offcanvas when open */
-      transition: transform .28s cubic-bezier(.2,.9,.3,1), background .28s ease;
+      z-index: 1000;
+      /* keep navbar under the offcanvas when open */
+      transition: transform .28s cubic-bezier(.2, .9, .3, 1), background .28s ease;
     }
 
     .navbar-glass .navbar-brand {
@@ -44,7 +47,7 @@
     /* animate the default bootstrap icon by rotating wrapper */
     .navbar-toggler.toggled .navbar-toggler-icon {
       transform: rotate(90deg) scale(1.05);
-      transition: transform .34s cubic-bezier(.2,.9,.3,1);
+      transition: transform .34s cubic-bezier(.2, .9, .3, 1);
     }
 
     .navbar-toggler-icon {
@@ -59,12 +62,13 @@
        ------------------------- */
 
     .d-none.d-lg-flex .navbar-nav .nav-link {
-      position: relative; /* for the ::after underline */
+      position: relative;
+      /* for the ::after underline */
       padding: .35rem .5rem;
       border-radius: 6px;
       overflow: visible;
-      transition: transform .18s cubic-bezier(.2,.9,.3,1), color .18s ease;
-      -webkit-font-smoothing:antialiased;
+      transition: transform .18s cubic-bezier(.2, .9, .3, 1), color .18s ease;
+      -webkit-font-smoothing: antialiased;
     }
 
     .d-none.d-lg-flex .navbar-nav .nav-link::after {
@@ -74,9 +78,9 @@
       bottom: 6px;
       height: 2px;
       width: 0;
-      background: linear-gradient(90deg,#7b3fe4,#ff7a59);
+      background: linear-gradient(90deg, #7b3fe4, #ff7a59);
       border-radius: 2px;
-      transition: width .26s cubic-bezier(.2,.9,.3,1);
+      transition: width .26s cubic-bezier(.2, .9, .3, 1);
     }
 
     .d-none.d-lg-flex .navbar-nav .nav-link:hover::after,
@@ -90,7 +94,11 @@
     }
 
     /* KEEP THE WHOLE PAGE SCROLLABLE VIA .page-content */
-    .spacer { height: 64px; } /* space for fixed navbar */
+    .spacer {
+      height: 64px;
+    }
+
+    /* space for fixed navbar */
     .page-content {
       height: calc(100% - 64px);
       overflow-y: auto;
@@ -106,7 +114,8 @@
 
     /* OFFCANVAS PANEL (RIGHT) - glassy, above navbar so it is fully visible */
     .offcanvas {
-      z-index: 2000 !important; /* ensure offcanvas sits above navbar */
+      z-index: 2000 !important;
+      /* ensure offcanvas sits above navbar */
       transition: transform .28s ease;
     }
 
@@ -115,11 +124,11 @@
       width: 70% !important;
       min-height: 100vh;
       right: 0;
-      background: rgba(255,255,255,0.36);
+      background: rgba(255, 255, 255, 0.36);
       backdrop-filter: blur(16px);
       -webkit-backdrop-filter: blur(16px);
-      box-shadow: -8px 0 24px rgba(0,0,0,0.10);
-      border-left: 1px solid rgba(255,255,255,0.45);
+      box-shadow: -8px 0 24px rgba(0, 0, 0, 0.10);
+      border-left: 1px solid rgba(255, 255, 255, 0.45);
       padding: 0;
       overflow-y: auto;
     }
@@ -136,7 +145,7 @@
       padding: 1rem 1rem 2rem;
       padding-top: 0.75rem;
       color: #111;
-      -webkit-font-smoothing:antialiased;
+      -webkit-font-smoothing: antialiased;
     }
 
     /* nav list & items */
@@ -159,7 +168,7 @@
       /* start hidden for animated reveal */
       opacity: 0;
       transform: translateX(10px);
-      transition: opacity .36s ease, transform .36s cubic-bezier(.2,.9,.3,1);
+      transition: opacity .36s ease, transform .36s cubic-bezier(.2, .9, .3, 1);
       will-change: transform, opacity;
     }
 
@@ -170,7 +179,7 @@
 
     #offcanvasNavbar .nav-link:hover,
     #offcanvasNavbar .nav-link:focus {
-      background: rgba(0,0,0,0.04);
+      background: rgba(0, 0, 0, 0.04);
       color: #000 !important;
     }
 
@@ -193,7 +202,7 @@
       position: relative;
       transform: translateX(20px) scale(.995);
       opacity: 0;
-      transition: transform .9s cubic-bezier(.16,.9,.3,1), opacity .9s ease;
+      transition: transform .9s cubic-bezier(.16, .9, .3, 1), opacity .9s ease;
       will-change: transform, opacity;
     }
 
@@ -207,7 +216,7 @@
       content: "";
       position: absolute;
       inset: 0;
-      background: linear-gradient(180deg, rgba(0,0,0,0.06), rgba(0,0,0,0.12));
+      background: linear-gradient(180deg, rgba(0, 0, 0, 0.06), rgba(0, 0, 0, 0.12));
       pointer-events: none;
     }
 
@@ -233,7 +242,7 @@
       padding: 2rem;
       transform: translateY(8px);
       opacity: 0;
-      transition: transform .7s cubic-bezier(.2,.9,.3,1), opacity .7s ease;
+      transition: transform .7s cubic-bezier(.2, .9, .3, 1), opacity .7s ease;
       will-change: transform, opacity;
     }
 
@@ -250,55 +259,58 @@
 
     .info-content p {
       margin: 0;
-      color: rgba(0,0,0,0.65);
+      color: rgba(0, 0, 0, 0.65);
     }
 
     /* MOBILE VIEW */
     @media (max-width: 991px) {
-        .coffee-section {
-            min-height: 25vh;
-        }
+      .coffee-section {
+        min-height: 25vh;
+      }
 
-        .info-box {
-            position: relative;
-            background: url("https://images.unsplash.com/photo-1509042239860-f550ce710b93") center/cover no-repeat;
-            min-height: 25vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            border-radius: 0;
-        }
+      .info-box {
+        position: relative;
+        background: url("https://images.unsplash.com/photo-1509042239860-f550ce710b93") center/cover no-repeat;
+        min-height: 25vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-radius: 0;
+      }
 
-        .info-box::before {
-            /* darker overlay for mobile so text stays legible */
-            background: rgba(0, 0, 0, 0.42);
-            left: 0;
-            top: 0;
-            width: 100%;
-            height: 100%;
-            content: "";
-            position: absolute;
-            z-index: 0;
-            pointer-events: none;
-            opacity: 1;
-            transform: none;
-            animation: none;
-        }
+      .info-box::before {
+        /* darker overlay for mobile so text stays legible */
+        background: rgba(0, 0, 0, 0.42);
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        content: "";
+        position: absolute;
+        z-index: 0;
+        pointer-events: none;
+        opacity: 1;
+        transform: none;
+        animation: none;
+      }
 
-        .info-content {
-            position: relative;
-            z-index: 1;
-            padding: 2rem;
-        }
+      .info-content {
+        position: relative;
+        z-index: 1;
+        padding: 2rem;
+      }
 
-        .image-box {
-          display: none;
-        }
+      .image-box {
+        display: none;
+      }
     }
 
     /* mobile tweak: wider on very small screens */
     @media (max-width: 420px) {
-      #offcanvasNavbar { --bs-offcanvas-width: 85%; width: 85% !important; }
+      #offcanvasNavbar {
+        --bs-offcanvas-width: 85%;
+        width: 85% !important;
+      }
     }
 
     /* optional: subtle divider under brand when menu opens */
@@ -308,15 +320,41 @@
 
     /* NAV LINK STAGGER (only visual; JS triggers .is-visible class for smooth stagger) */
     /* fallback delays via nth-child so CSS-only still has mild stagger */
-    #offcanvasNavbar .navbar-nav .nav-item:nth-child(1) .nav-link { transition-delay: 0ms; }
-    #offcanvasNavbar .navbar-nav .nav-item:nth-child(2) .nav-link { transition-delay: 40ms; }
-    #offcanvasNavbar .navbar-nav .nav-item:nth-child(3) .nav-link { transition-delay: 80ms; }
-    #offcanvasNavbar .navbar-nav .nav-item:nth-child(4) .nav-link { transition-delay: 120ms; }
-    #offcanvasNavbar .navbar-nav .nav-item:nth-child(5) .nav-link { transition-delay: 160ms; }
-    #offcanvasNavbar .navbar-nav .nav-item:nth-child(6) .nav-link { transition-delay: 200ms; }
-    #offcanvasNavbar .navbar-nav .nav-item:nth-child(7) .nav-link { transition-delay: 240ms; }
-    #offcanvasNavbar .navbar-nav .nav-item:nth-child(8) .nav-link { transition-delay: 280ms; }
-    #offcanvasNavbar .navbar-nav .nav-item:nth-child(9) .nav-link { transition-delay: 320ms; }
+    #offcanvasNavbar .navbar-nav .nav-item:nth-child(1) .nav-link {
+      transition-delay: 0ms;
+    }
+
+    #offcanvasNavbar .navbar-nav .nav-item:nth-child(2) .nav-link {
+      transition-delay: 40ms;
+    }
+
+    #offcanvasNavbar .navbar-nav .nav-item:nth-child(3) .nav-link {
+      transition-delay: 80ms;
+    }
+
+    #offcanvasNavbar .navbar-nav .nav-item:nth-child(4) .nav-link {
+      transition-delay: 120ms;
+    }
+
+    #offcanvasNavbar .navbar-nav .nav-item:nth-child(5) .nav-link {
+      transition-delay: 160ms;
+    }
+
+    #offcanvasNavbar .navbar-nav .nav-item:nth-child(6) .nav-link {
+      transition-delay: 200ms;
+    }
+
+    #offcanvasNavbar .navbar-nav .nav-item:nth-child(7) .nav-link {
+      transition-delay: 240ms;
+    }
+
+    #offcanvasNavbar .navbar-nav .nav-item:nth-child(8) .nav-link {
+      transition-delay: 280ms;
+    }
+
+    #offcanvasNavbar .navbar-nav .nav-item:nth-child(9) .nav-link {
+      transition-delay: 320ms;
+    }
 
     /* subtle hover pop for nav items */
     #offcanvasNavbar .nav-link:active,
@@ -327,53 +365,83 @@
 
     /* small focus indicator for accessibility */
     #offcanvasNavbar .nav-link:focus {
-      outline: 3px solid rgba(0,0,0,0.06);
+      outline: 3px solid rgba(0, 0, 0, 0.06);
       outline-offset: 2px;
     }
 
     /* make content breathe on hover */
-    .info-box:hover { transform: translateY(-4px); box-shadow: 0 10px 30px rgba(0,0,0,0.06); }
-    .image-box:hover { transform: scale(1.01); box-shadow: 0 18px 48px rgba(0,0,0,0.08); }
+    .info-box:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.06);
+    }
+
+    .image-box:hover {
+      transform: scale(1.01);
+      box-shadow: 0 18px 48px rgba(0, 0, 0, 0.08);
+    }
 
     /* small reduced-motion consideration */
     @media (prefers-reduced-motion: reduce) {
-      .info-content, .image-box, #offcanvasNavbar .nav-link, .navbar-toggler, .navbar-glass { transition: none !important; animation: none !important; transform: none !important; }
+
+      .info-content,
+      .image-box,
+      #offcanvasNavbar .nav-link,
+      .navbar-toggler,
+      .navbar-glass {
+        transition: none !important;
+        animation: none !important;
+        transform: none !important;
+      }
     }
 
     .image_info {
-  overflow: hidden;
-}
+      overflow: visible;
+    }
 
-/* Image behavior */
-.image_info img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: center center;
-}
 
-/* Desktop */
-.image_info,
-.info_info {
-  height: 90vh;
-}
+    /* Image behavior */
+    .image_info img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center center;
+      box-shadow: 5px 5px 8px rgba(0, 0, 0, 0.3);
 
-/* Mobile */
-@media (max-width: 991px) {
-  .image_info {
-    height: 40vh; /* slightly less height = better crop */
-  }
 
-  .info_info {
-    height: 40vh;
-  }
-}
-@media (max-width: 700px) {
-  .image_info {
-    height: 25vh; /* slightly less height = better crop */
-  }
+    }
 
-  .info_info {
-    height: 25vh;
-  }
-}
+    /* Desktop */
+    .image_info,
+    .info_info {
+      height: 90vh;
+    }
+
+
+    /* Mobile */
+    @media (max-width: 991px) {
+      .image_info {
+        height: 40vh;
+        /* slightly less height = better crop */
+      }
+
+      .info_info {
+        height: 40vh;
+      }
+
+    }
+
+    @media (max-width: 700px) {
+      .image_info {
+        height: 25vh;
+        /* slightly less height = better crop */
+      }
+
+      .info_info {
+        height: 25vh;
+      }
+
+      .container_info {
+        padding-left: 2px;
+      }
+
+    }
