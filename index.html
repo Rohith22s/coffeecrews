@@ -1,5 +1,6 @@
 <!doctype html>
 <html lang="en">
+
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
@@ -10,9 +11,19 @@
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
 
   <style>
+    .image_info .info_info{
+  height: 90vh;
+}
+
+@media (max-width: 991px) {
+  .image_info .info_info{
+    height: 60vh; /* medium size on mobile */
+  }
+}
 
   </style>
 </head>
+
 <body>
 
   <!-- NAVBAR -->
@@ -21,10 +32,8 @@
       <a class="navbar-brand fw-bold" href="#">COFFEECREWS</a>
 
       <!-- toggler -->
-      <button class="navbar-toggler ms-auto" type="button"
-              id="navToggler"
-              data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar"
-              aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
+      <button class="navbar-toggler ms-auto" type="button" id="navToggler" data-bs-toggle="offcanvas"
+        data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
 
@@ -73,12 +82,12 @@
 
       <!-- INFO -->
       <div class="col-lg-6 info-box d-flex align-items-center justify-content-center">
-          <div class="info-content text-center text-black" id="infoContent">
-              <h2>Our Coffee</h2>
-              <p>
-                  Premium coffee crafted with passion and precision.
-              </p>
-          </div>
+        <div class="info-content text-center text-black" id="infoContent">
+          <h2>Our Coffee</h2>
+          <p>
+            Premium coffee crafted with passion and precision.
+          </p>
+        </div>
       </div>
 
       <!-- IMAGE (desktop only) -->
@@ -87,8 +96,19 @@
     </div>
   </div>
 
+  <div class="container-fluid px-3 py-1 border">
+    <div class="row ">
+      <div class="image_info col-5 ">
+        <img src="https://images.unsplash.com/photo-1509042239860-f550ce710b93" alt="coffee image" class="img-fluid rounded" >
+      </div>
+      <div class="col info_info ">
+        Column
+      </div>
+    </div>
+  </div>
   <!-- Bootstrap Bundle (includes Popper) -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" defer></script>
   <script src="script.js"></script>
 </body>
+
 </html>
