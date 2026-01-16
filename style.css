@@ -1,0 +1,341 @@
+    /* PAGE BASICS */
+    html, body {
+      height: 100%;
+      margin: 0;
+      background: #f8f9fa;
+      overflow: hidden; /* keep one scrolling area (page-content) */
+      -webkit-font-smoothing:antialiased;
+      font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+    }
+
+    /* NAVBAR (light glass + subtle blur) */
+    .navbar-glass {
+      background: rgba(255,255,255,0.65);
+      backdrop-filter: blur(4px);
+      -webkit-backdrop-filter: blur(4px);
+      border-bottom: 1px solid rgba(0,0,0,0.04);
+      box-shadow: 0 1px 10px rgba(0,0,0,0.03);
+      height: 64px;
+      z-index: 1000; /* keep navbar under the offcanvas when open */
+      transition: transform .28s cubic-bezier(.2,.9,.3,1), background .28s ease;
+    }
+
+    .navbar-glass .navbar-brand {
+      font-weight: 700;
+      letter-spacing: .2px;
+    }
+
+    .navbar-glass .nav-link {
+      color: #111;
+      font-weight: 500;
+    }
+
+    .navbar-toggler {
+      border: none;
+      width: 44px;
+      height: 44px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      background: transparent;
+      transition: transform .28s ease;
+    }
+
+    /* animate the default bootstrap icon by rotating wrapper */
+    .navbar-toggler.toggled .navbar-toggler-icon {
+      transform: rotate(90deg) scale(1.05);
+      transition: transform .34s cubic-bezier(.2,.9,.3,1);
+    }
+
+    .navbar-toggler-icon {
+      transition: transform .28s ease;
+      will-change: transform;
+    }
+
+    /* -------------------------
+       ADDED: desktop-only navbar hover effect
+       This is the only change — it adds the underline + gentle lift
+       for the desktop navbar links and does nothing else.
+       ------------------------- */
+
+    .d-none.d-lg-flex .navbar-nav .nav-link {
+      position: relative; /* for the ::after underline */
+      padding: .35rem .5rem;
+      border-radius: 6px;
+      overflow: visible;
+      transition: transform .18s cubic-bezier(.2,.9,.3,1), color .18s ease;
+      -webkit-font-smoothing:antialiased;
+    }
+
+    .d-none.d-lg-flex .navbar-nav .nav-link::after {
+      content: "";
+      position: absolute;
+      left: 10%;
+      bottom: 6px;
+      height: 2px;
+      width: 0;
+      background: linear-gradient(90deg,#7b3fe4,#ff7a59);
+      border-radius: 2px;
+      transition: width .26s cubic-bezier(.2,.9,.3,1);
+    }
+
+    .d-none.d-lg-flex .navbar-nav .nav-link:hover::after,
+    .d-none.d-lg-flex .navbar-nav .nav-link:focus::after,
+    .d-none.d-lg-flex .navbar-nav .nav-link.active::after {
+      width: 80%;
+    }
+
+    .d-none.d-lg-flex .navbar-nav .nav-link:hover {
+      transform: translateY(-3px);
+    }
+
+    /* KEEP THE WHOLE PAGE SCROLLABLE VIA .page-content */
+    .spacer { height: 64px; } /* space for fixed navbar */
+    .page-content {
+      height: calc(100% - 64px);
+      overflow-y: auto;
+      background: #fff;
+      padding: 1.25rem;
+    }
+
+    /* OFFCANVAS BACKDROP: transparent (no dark overlay) */
+    .offcanvas-backdrop {
+      background-color: transparent !important;
+      backdrop-filter: none !important;
+    }
+
+    /* OFFCANVAS PANEL (RIGHT) - glassy, above navbar so it is fully visible */
+    .offcanvas {
+      z-index: 2000 !important; /* ensure offcanvas sits above navbar */
+      transition: transform .28s ease;
+    }
+
+    #offcanvasNavbar {
+      --bs-offcanvas-width: 70%;
+      width: 70% !important;
+      min-height: 100vh;
+      right: 0;
+      background: rgba(255,255,255,0.36);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      box-shadow: -8px 0 24px rgba(0,0,0,0.10);
+      border-left: 1px solid rgba(255,255,255,0.45);
+      padding: 0;
+      overflow-y: auto;
+    }
+
+    /* make sure the offcanvas-header doesn't get visually obscured */
+    #offcanvasNavbar .offcanvas-header {
+      padding: 0.6rem 1rem;
+      background: transparent;
+      align-items: center;
+    }
+
+    /* body inside offcanvas: padding so items appear below the header */
+    #offcanvasNavbar .offcanvas-body {
+      padding: 1rem 1rem 2rem;
+      padding-top: 0.75rem;
+      color: #111;
+      -webkit-font-smoothing:antialiased;
+    }
+
+    /* nav list & items */
+    #offcanvasNavbar .navbar-nav {
+      display: flex;
+      flex-direction: column;
+      gap: 0.25rem;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    #offcanvasNavbar .nav-link {
+      color: #111 !important;
+      font-weight: 600;
+      padding: 0.75rem 0.6rem;
+      display: block;
+      border-radius: 8px;
+      text-decoration: none;
+      /* start hidden for animated reveal */
+      opacity: 0;
+      transform: translateX(10px);
+      transition: opacity .36s ease, transform .36s cubic-bezier(.2,.9,.3,1);
+      will-change: transform, opacity;
+    }
+
+    #offcanvasNavbar .nav-link.is-visible {
+      opacity: 1;
+      transform: translateX(0);
+    }
+
+    #offcanvasNavbar .nav-link:hover,
+    #offcanvasNavbar .nav-link:focus {
+      background: rgba(0,0,0,0.04);
+      color: #000 !important;
+    }
+
+    /* ensure close button is visible */
+    #offcanvasNavbar .btn-close {
+      filter: none;
+      opacity: 0.95;
+    }
+
+    /* COFFEE SECTION */
+    .coffee-section {
+      min-height: 60vh;
+    }
+
+    .image-box {
+      background: url("https://images.unsplash.com/photo-1509042239860-f550ce710b93") center/cover no-repeat;
+      border-radius: 0;
+      min-height: 60vh;
+      overflow: hidden;
+      position: relative;
+      transform: translateX(20px) scale(.995);
+      opacity: 0;
+      transition: transform .9s cubic-bezier(.16,.9,.3,1), opacity .9s ease;
+      will-change: transform, opacity;
+    }
+
+    .image-box.is-visible {
+      transform: translateX(0) scale(1);
+      opacity: 1;
+    }
+
+    .image-box::after {
+      /* subtle dark vignette for readability */
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, rgba(0,0,0,0.06), rgba(0,0,0,0.12));
+      pointer-events: none;
+    }
+
+    .info-box {
+      background-color: #f8f9fa;
+      border-radius: 0;
+      position: relative;
+      overflow: hidden;
+      min-height: 60vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background .5s ease, transform .28s ease;
+    }
+
+    /* Removed the small circular steam pseudo-element per request.
+       Mobile overlay (below) remains unaffected. */
+
+    /* info content animation */
+    .info-content {
+      position: relative;
+      z-index: 1;
+      padding: 2rem;
+      transform: translateY(8px);
+      opacity: 0;
+      transition: transform .7s cubic-bezier(.2,.9,.3,1), opacity .7s ease;
+      will-change: transform, opacity;
+    }
+
+    .info-content.is-visible {
+      transform: translateY(0);
+      opacity: 1;
+    }
+
+    .info-content h2 {
+      font-weight: 700;
+      margin-bottom: .5rem;
+      letter-spacing: .2px;
+    }
+
+    .info-content p {
+      margin: 0;
+      color: rgba(0,0,0,0.65);
+    }
+
+    /* MOBILE VIEW */
+    @media (max-width: 991px) {
+        .coffee-section {
+            min-height: 30vh;
+        }
+
+        .info-box {
+            position: relative;
+            background: url("https://images.unsplash.com/photo-1509042239860-f550ce710b93") center/cover no-repeat;
+            min-height: 40vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-radius: 0;
+        }
+
+        .info-box::before {
+            /* darker overlay for mobile so text stays legible */
+            background: rgba(0, 0, 0, 0.42);
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            content: "";
+            position: absolute;
+            z-index: 0;
+            pointer-events: none;
+            opacity: 1;
+            transform: none;
+            animation: none;
+        }
+
+        .info-content {
+            position: relative;
+            z-index: 1;
+            padding: 2rem;
+        }
+
+        .image-box {
+          display: none;
+        }
+    }
+
+    /* mobile tweak: wider on very small screens */
+    @media (max-width: 420px) {
+      #offcanvasNavbar { --bs-offcanvas-width: 85%; width: 85% !important; }
+    }
+
+    /* optional: subtle divider under brand when menu opens */
+    #offcanvasNavbar .offcanvas-title {
+      margin-right: .5rem;
+    }
+
+    /* NAV LINK STAGGER (only visual; JS triggers .is-visible class for smooth stagger) */
+    /* fallback delays via nth-child so CSS-only still has mild stagger */
+    #offcanvasNavbar .navbar-nav .nav-item:nth-child(1) .nav-link { transition-delay: 0ms; }
+    #offcanvasNavbar .navbar-nav .nav-item:nth-child(2) .nav-link { transition-delay: 40ms; }
+    #offcanvasNavbar .navbar-nav .nav-item:nth-child(3) .nav-link { transition-delay: 80ms; }
+    #offcanvasNavbar .navbar-nav .nav-item:nth-child(4) .nav-link { transition-delay: 120ms; }
+    #offcanvasNavbar .navbar-nav .nav-item:nth-child(5) .nav-link { transition-delay: 160ms; }
+    #offcanvasNavbar .navbar-nav .nav-item:nth-child(6) .nav-link { transition-delay: 200ms; }
+    #offcanvasNavbar .navbar-nav .nav-item:nth-child(7) .nav-link { transition-delay: 240ms; }
+    #offcanvasNavbar .navbar-nav .nav-item:nth-child(8) .nav-link { transition-delay: 280ms; }
+    #offcanvasNavbar .navbar-nav .nav-item:nth-child(9) .nav-link { transition-delay: 320ms; }
+
+    /* subtle hover pop for nav items */
+    #offcanvasNavbar .nav-link:active,
+    #offcanvasNavbar .nav-link:focus {
+      transform: translateX(2px);
+      transition: transform .12s ease;
+    }
+
+    /* small focus indicator for accessibility */
+    #offcanvasNavbar .nav-link:focus {
+      outline: 3px solid rgba(0,0,0,0.06);
+      outline-offset: 2px;
+    }
+
+    /* make content breathe on hover */
+    .info-box:hover { transform: translateY(-4px); box-shadow: 0 10px 30px rgba(0,0,0,0.06); }
+    .image-box:hover { transform: scale(1.01); box-shadow: 0 18px 48px rgba(0,0,0,0.08); }
+
+    /* small reduced-motion consideration */
+    @media (prefers-reduced-motion: reduce) {
+      .info-content, .image-box, #offcanvasNavbar .nav-link, .navbar-toggler, .navbar-glass { transition: none !important; animation: none !important; transform: none !important; }
+    }
