@@ -2,300 +2,578 @@
 <html lang="en">
 
 <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width,initial-scale=1" />
-    <link href="style.css" rel="stylesheet">
-    <title>COFFEECREWS</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <link href="style.css" rel="stylesheet">
+  <title>COFFEECREWS</title>
 
-    <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
 
-    <style>
-         .col_service {
-      height: 25vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      cursor: pointer;
-      user-select: none;
+  <style>
+       /* ===== SLIDER ===== */
+.slider-wrap {
+    width: 100%;
+    display: flex;
+    justify-content: flex-start; 
+    align-items: center;
+    padding: 1rem 0;
+}
+
+.slider-wrap .frame {
+    position: relative;
+    width: 100%;
+    max-width: 420px;
+    height: 260px;
+    padding: 0;
+    border-radius: 12px;
+    background: linear-gradient(180deg, rgba(255,255,255,.38), rgba(0,0,0,.02));
+    overflow: visible;
+    outline: none;
+}
+
+/* dots */
+.slider-wrap .dots {
+    position: absolute;
+    left: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    z-index: 50;
+}
+
+.slider-wrap .dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #bdbdbd;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+}
+
+.slider-wrap .dot.active {
+    background: #111;
+}
+
+/* stack */
+.slider-wrap .stack {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: start;
+    align-items: center;
+}
+
+/* cards */
+.slider-wrap .card {
+    position: absolute;
+    width: 240px;
+    height: 130px;
+    border-radius: 14px;
+    padding: 12px;
+    color: #fff;
+    font-weight: 600;
+    display: flex;
+    align-items: flex-end;
+    transition: transform .5s cubic-bezier(.2,.9,.3,1), opacity .35s ease;
+    overflow: hidden;
+    cursor: pointer;
+    user-select: none;
+}
+
+/* positions */
+.slider-wrap .card.center {
+    transform: translate(110px, 0) scale(1);
+    z-index: 3;
+    background: linear-gradient(180deg, #b3a5a7, #9d8f90);
+}
+
+.slider-wrap .card.back.left {
+    transform: translate(20px, -65px) scale(.92);
+    z-index: 2;
+    background: linear-gradient(180deg, #c9bfbf, #bfb3b3);
+}
+
+.slider-wrap .card.back.right {
+    transform: translate(20px, 65px) scale(.92);
+    z-index: 1;
+    background: linear-gradient(180deg, #d6cccc, #cbbfbf);
+}
+
+.slider-wrap .card.hidden {
+    opacity: 0;
+    transform: scale(.7);
+}
+
+/* label */
+.slider-wrap .label {
+    background: rgba(0,0,0,.16);
+    padding: 6px 10px;
+    border-radius: 10px;
+    font-size: .95rem;
+}
+
+/* responsive */
+@media (max-width: 992px) {
+    .slider-wrap .frame {
+        max-width: 360px;
+        height: 220px;
     }
 
-    /* slightly smaller blocks on phones */
-    @media (max-width: 767px) {
-      .col_service { height: 20vh; }
+    .slider-wrap .card {
+        width: 200px;
+        height: 110px;
     }
 
-    /* small visual for active service on desktop */
-    .service-item.active {
-      box-shadow: 0 0 0 3px rgba(0,123,255,0.12);
-      border-color: #0d6efd;
+    .slider-wrap .card.center {
+        transform: translate(0, 0) scale(1);
     }
 
-    /* optional smooth show/hide */
-    .fade-in { transition: opacity .22s ease-in; opacity: 1; }
-    .fade-out { transition: opacity .22s ease-out; opacity: 0; }
-    </style>
+    .slider-wrap .card.back.left {
+        transform: translate(-44px, -42px) scale(.85);
+        opacity: 0.7;
+    }
+
+    .slider-wrap .card.back.right {
+        transform: translate(44px, 42px) scale(.85);
+        opacity: 0.7;
+    }
+    .slider-wrap .stack{
+        justify-content: center;
+    }
+}
+
+@media (max-width: 600px) {
+    .slider-wrap .frame {
+        height: 200px;
+        padding: 8px;
+    }
+
+    .slider-wrap .card {
+        width: clamp(140px, 40vw, 180px);
+        height: 100px;
+    }
+
+    .slider-wrap .dots {
+        left: 50%;
+        bottom: 0px;
+        top: auto;
+        transform: translateX(-50%);
+        flex-direction: row;
+    }
+    .slider-wrap .stack{
+        justify-content: center;
+    }
+}
+
+/* Info columns styling */
+.info-card {
+  background: #fff;
+  border-radius: 10px;
+  padding: 12px;
+  box-shadow: 0 6px 10px rgba(0,0,0,0.06);
+  min-height: 120px;
+}
+.info-title { font-size: 1.05rem; font-weight: 700; margin-bottom: 6px; }
+.info-desc { color: #444; margin: 0 0 8px 0; }
+.info-extra { color: #777; font-size: .9rem; }
+
+  </style>
 </head>
 
 <body>
 
-    <!-- NAVBAR -->
-    <nav class="navbar navbar-expand-lg navbar-light navbar-glass fixed-top">
-        <div class="container-fluid">
-            <a class="navbar-brand fw-bold" href="#">COFFEECREWS</a>
-
-            <!-- toggler -->
-            <button class="navbar-toggler ms-auto" type="button" id="navToggler" data-bs-toggle="offcanvas"
-                data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-
-            <!-- desktop menu (visible on lg+) -->
-            <div class="d-none d-lg-flex ms-auto">
-                <ul class="navbar-nav gap-2 align-items-center">
-                    <li class="nav-item"><a class="nav-link active" href="#">Home</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#">Info</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#">Services</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#">Project</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#">Contact</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#">Team</a></li>
-                </ul>
-            </div>
-        </div>
-    </nav>
-
-    <!-- spacer so page content isn't hidden under fixed navbar -->
-    <div class="spacer" aria-hidden="true"></div>
-
-    <!-- OFFCANVAS MENU (RIGHT) -->
-    <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
-        <div class="offcanvas-header">
-            <h5 class="offcanvas-title fw-bold" id="offcanvasNavbarLabel">Menu</h5>
-            <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-        </div>
-
-        <div class="offcanvas-body">
-            <ul class="navbar-nav">
-                <li class="nav-item"><a class="nav-link active" href="#">Home</a></li>
-                <li class="nav-item"><a class="nav-link" href="#">Info</a></li>
-                <li class="nav-item"><a class="nav-link" href="#">Services</a></li>
-                <li class="nav-item"><a class="nav-link" href="#">Project</a></li>
-                <li class="nav-item"><a class="nav-link" href="#">Contact</a></li>
-                <li class="nav-item"><a class="nav-link" href="#">Team</a></li>
-                <li class="nav-item"><a class="nav-link" href="#">Careers</a></li>
-                <li class="nav-item"><a class="nav-link" href="#">Blog</a></li>
-                <li class="nav-item"><a class="nav-link" href="#">Support</a></li>
-            </ul>
-        </div>
-    </div>
-
-    <!-- PAGE CONTENT -->
+  <!-- NAVBAR -->
+  <nav class="navbar navbar-expand-lg navbar-light navbar-glass fixed-top">
     <div class="container-fluid">
-        <div class="row coffee-section ">
+      <a class="navbar-brand fw-bold" href="#">COFFEECREWS</a>
 
-            <!-- INFO -->
-            <div class="col-lg-6 info-box d-flex align-items-center justify-content-center">
-                <div class="info-content text-center text-black" id="infoContent">
-                    <h2>Our Coffee</h2>
-                    <p>
-                        Premium coffee crafted with passion and precision.
-                    </p>
-                </div>
-            </div>
+      <!-- toggler -->
+      <button class="navbar-toggler ms-auto" type="button" id="navToggler" data-bs-toggle="offcanvas"
+        data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
 
-            <!-- IMAGE (desktop only) -->
-            <div class="col-lg-6 image-box d-none d-lg-block" id="imageBox" role="img" aria-label="coffee image"></div>
+      <!-- desktop menu (visible on lg+) -->
+      <div class="d-none d-lg-flex ms-auto">
+        <ul class="navbar-nav gap-2 align-items-center">
+          <li class="nav-item"><a class="nav-link active" href="#">Home</a></li>
+          <li class="nav-item"><a class="nav-link" href="#">Info</a></li>
+          <li class="nav-item"><a class="nav-link" href="#">Services</a></li>
+          <li class="nav-item"><a class="nav-link" href="#">Project</a></li>
+          <li class="nav-item"><a class="nav-link" href="#">Contact</a></li>
+          <li class="nav-item"><a class="nav-link" href="#">Team</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
 
-        </div>
+  <!-- spacer so page content isn't hidden under fixed navbar -->
+  <div class="spacer" aria-hidden="true"></div>
+
+  <!-- OFFCANVAS MENU (RIGHT) -->
+  <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
+    <div class="offcanvas-header">
+      <h5 class="offcanvas-title fw-bold" id="offcanvasNavbarLabel">Menu</h5>
+      <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
     </div>
 
-    <div class="container-fluid container_info my-1">
-        <div class="row">
-            <div class="image_info col-5" style="margin-left: 1%;">
-                <img src="https://images.unsplash.com/photo-1509042239860-f550ce710b93" alt="coffee image"
-                    class="img-fluid rounded-3">
-            </div>
-            <div class="col info_info p-2">
-                Column
-            </div>
-        </div>
+    <div class="offcanvas-body">
+      <ul class="navbar-nav">
+        <li class="nav-item"><a class="nav-link active" href="#">Home</a></li>
+        <li class="nav-item"><a class="nav-link" href="#">Info</a></li>
+        <li class="nav-item"><a class="nav-link" href="#">Services</a></li>
+        <li class="nav-item"><a class="nav-link" href="#">Project</a></li>
+        <li class="nav-item"><a class="nav-link" href="#">Contact</a></li>
+        <li class="nav-item"><a class="nav-link" href="#">Team</a></li>
+        <li class="nav-item"><a class="nav-link" href="#">Careers</a></li>
+        <li class="nav-item"><a class="nav-link" href="#">Blog</a></li>
+        <li class="nav-item"><a class="nav-link" href="#">Support</a></li>
+      </ul>
     </div>
+  </div>
 
-   <div class="container-fluid px-4 py-1 text-center">
-  <div class="row">
+  <!-- PAGE CONTENT -->
+  <div class="container-fluid">
+    <div class="row coffee-section ">
 
-    <!-- SERVICES (left on desktop; full width on mobile) -->
-    <div id="servicesColumn" class="col-md-8 col-12 border py-3">
-      <h3>SERVICES</h3>
-
-      <div id="servicesGrid" class="row g-2">
-        <!-- 9 service items -->
-        <!-- Each .service-item contains data-title and data-desc used to populate details -->
-        <div class="col-6 col-md-4">
-          <div class="col_service border service-item" data-title="Service 1" data-desc="Details for Service 1">
-            Service 1
-          </div>
+      <!-- INFO -->
+      <div class="col-lg-6 info-box d-flex align-items-center justify-content-center">
+        <div class="info-content text-center text-black" id="infoContent">
+          <h2>Our Coffee</h2>
+          <p>
+            Premium coffee crafted with passion and precision.
+          </p>
         </div>
+      </div>
 
-        <div class="col-6 col-md-4">
-          <div class="col_service border service-item" data-title="Service 2" data-desc="Details for Service 2">
-            Service 2
+      <!-- IMAGE (desktop only) -->
+      <div class="col-lg-6 image-box d-none d-lg-block" id="imageBox" role="img" aria-label="coffee image"></div>
+
+    </div>
+  </div>
+
+  <div class="container-fluid container_info my-1">
+    <div class="row">
+      <div class="image_info col-5" style="margin-left: 1%;">
+        <img src="https://images.unsplash.com/photo-1509042239860-f550ce710b93" alt="coffee image"
+          class="img-fluid rounded-3">
+      </div>
+      <div class="col info_info p-2">
+        Column
+      </div>
+    </div>
+  </div>
+
+  <div class="container-fluid px-4 py-1 text-center ">
+    <div class="row ">
+
+      <!-- SERVICES (left on desktop; full width on mobile) -->
+      <div id="servicesColumn" class="col-md-8 col-12 border py-3 rounded-5">
+        <h3>SERVICES</h3>
+
+        <div id="servicesGrid" class="row g-2">
+          <!-- 9 service items -->
+          <!-- Each .service-item contains data-title and data-desc used to populate details -->
+          <div class="col-6 col-md-4">
+            <div class="col_service border service-item" data-title="Service 1" data-desc="Details for Service 1">
+              Service 1
+            </div>
           </div>
-        </div>
 
-        <div class="col-6 col-md-4">
-          <div class="col_service border service-item" data-title="Service 3" data-desc="Details for Service 3">
-            Service 3
+          <div class="col-6 col-md-4">
+            <div class="col_service border service-item" data-title="Service 2" data-desc="Details for Service 2">
+              Service 2
+            </div>
           </div>
-        </div>
 
-        <div class="col-6 col-md-4">
-          <div class="col_service border service-item" data-title="Service 4" data-desc="Details for Service 4">
-            Service 4
+          <div class="col-6 col-md-4">
+            <div class="col_service border service-item" data-title="Service 3" data-desc="Details for Service 3">
+              Service 3
+            </div>
           </div>
-        </div>
 
-        <div class="col-6 col-md-4">
-          <div class="col_service border service-item" data-title="Service 5" data-desc="Details for Service 5">
-            Service 5
+          <div class="col-6 col-md-4">
+            <div class="col_service border service-item" data-title="Service 4" data-desc="Details for Service 4">
+              Service 4
+            </div>
           </div>
-        </div>
 
-        <div class="col-6 col-md-4">
-          <div class="col_service border service-item" data-title="Service 6" data-desc="Details for Service 6">
-            Service 6
+          <div class="col-6 col-md-4">
+            <div class="col_service border service-item" data-title="Service 5" data-desc="Details for Service 5">
+              Service 5
+            </div>
           </div>
-        </div>
 
-        <div class="col-6 col-md-4">
-          <div class="col_service border service-item" data-title="Service 7" data-desc="Details for Service 7">
-            Service 7
+          <div class="col-6 col-md-4">
+            <div class="col_service border service-item" data-title="Service 6" data-desc="Details for Service 6">
+              Service 6
+            </div>
           </div>
-        </div>
 
-        <div class="col-6 col-md-4">
-          <div class="col_service border service-item" data-title="Service 8" data-desc="Details for Service 8">
-            Service 8
+          <div class="col-6 col-md-4">
+            <div class="col_service border service-item" data-title="Service 7" data-desc="Details for Service 7">
+              Service 7
+            </div>
           </div>
-        </div>
 
-        <div class="col-6 col-md-4">
-          <div class="col_service border service-item" data-title="Service 9" data-desc="Details for Service 9">
-            Service 9
+          <div class="col-6 col-md-4">
+            <div class="col_service border service-item" data-title="Service 8" data-desc="Details for Service 8">
+              Service 8
+            </div>
+          </div>
+          <div class="col-6 col-md-4">
+            <div class="col_service border service-item" data-title="Service 9" data-desc="Details for Service 9">
+              Service 9
+            </div>
           </div>
         </div>
       </div>
-    </div>
 
-    <!-- SERVICE DETAILS (desktop) -->
-    <div id="serviceDetailsDesktop" class="col-md-4 d-none d-md-block border py-3">
-      <h3 id="detailTitleDesktop">SERVICE DETAILS</h3>
-      <p id="detailDescDesktop">Select a service to see details</p>
-    </div>
-
-    <!-- SERVICE DETAILS (mobile) - initially hidden -->
-    <!-- This panel will be toggled in mobile; it's hidden on md+ via d-md-none -->
-    <div id="serviceDetailsMobile" class="col-12 d-none d-md-none border py-3">
-      <div class="d-flex justify-content-between align-items-center mb-2">
-        <h3 id="detailTitleMobile">SERVICE DETAILS</h3>
-        <button id="backBtn" class="btn btn-outline-secondary btn-sm">Back</button>
+      <!-- SERVICE DETAILS (desktop) -->
+      <div id="serviceDetailsDesktop" class="col-md-4 d-none d-md-block">
+        <div class="container border h-100 rounded-5">
+          <h3 id="detailTitleDesktop">SERVICE DETAILS</h3>
+          <p id="detailDescDesktop">Select a service to see details</p>
+        </div>
       </div>
-      <p id="detailDescMobile">Select a service to see details</p>
+
+      <!-- SERVICE DETAILS (mobile) - initially hidden -->
+      <!-- This panel will be toggled in mobile; it's hidden on md+ via d-md-none -->
+      <div id="serviceDetailsMobile" class="col-12 d-none d-md-none border py-3 rounded-5">
+        <div class="d-flex justify-content-between align-items-center mb-2">
+          <h3 id="detailTitleMobile">SERVICE DETAILS</h3>
+          <button id="backBtn" class="btn btn-outline-secondary btn-sm">Back</button>
+        </div>
+        <p id="detailDescMobile">Select a service to see details</p>
+      </div>
+
+    </div>
+  </div>
+  <div class="container-xxl px-4 my-2  rounded-3">
+    <div class="row">
+      <div class="col text-center">
+        <h2>About CoffeeCrews</h2>
+        <p>Your trusted partner in premium coffee solutions.</p>
+      </div>
     </div>
 
   </div>
-</div>
+  <div class="container-fluid border py-3">
+    <div class="container-fluid">
+      <div class="row g-3 align-items-start">
+        <!-- SLIDER COLUMN -->
+        <div class="col-12 col-md-4">
+          <div class="slider-wrap" aria-hidden="false">
+            <div class="frame" tabindex="0" aria-roledescription="carousel" aria-label="Product slider">
 
+              <div class="dots" role="tablist" aria-label="slider dots">
+                <button class="dot" aria-label="Slide 1" role="tab" aria-selected="false"></button>
+                <button class="dot" aria-label="Slide 2" role="tab" aria-selected="false"></button>
+                <button class="dot" aria-label="Slide 3" role="tab" aria-selected="true"></button>
+                <button class="dot" aria-label="Slide 4" role="tab" aria-selected="false"></button>
+                <button class="dot" aria-label="Slide 5" role="tab" aria-selected="false"></button>
+              </div>
 
+              <div class="stack" aria-live="polite">
+                <!-- add data-index attributes so JS can refer to them easily -->
+                <div class="card" data-index="0"><span class="label">Blend A</span></div>
+                <div class="card" data-index="1"><span class="label">Blend B</span></div>
+                <div class="card" data-index="2"><span class="label">Signature</span></div>
+                <div class="card" data-index="3"><span class="label">Organic</span></div>
+                <div class="card" data-index="4"><span class="label">Limited</span></div>
+              </div>
 
+            </div>
+          </div>
+        </div>
 
-    <!-- Bootstrap Bundle (includes Popper) -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" defer></script>
-    <script src="script.js"></script>
-    <script>
-(function () {
-    const serviceItems = document.querySelectorAll('.service-item');
-    const servicesCol = document.getElementById('servicesColumn');
+        <!-- INFO COLUMNS -->
+        <div class="col-12 col-md-4">
+          <div id="info1" class="info-card" aria-live="polite">
+            <div class="info-title">Signature</div>
+            <p class="info-desc">Our classic, full-bodied blend with a chocolatey finish.</p>
+            <div class="info-extra">Roast: Medium • Size: 250g</div>
+          </div>
+        </div>
 
-    // Desktop details
-    const detailTitleDesktop = document.getElementById('detailTitleDesktop');
-    const detailDescDesktop  = document.getElementById('detailDescDesktop');
+        <div class="col-12 col-md-4">
+          <div id="info2" class="info-card" aria-live="polite">
+            <div class="info-title">Extra details</div>
+            <p class="info-desc">Single origin beans with tasting notes of caramel & nuts.</p>
+            <div class="info-extra">Price: ₹449 • Limited stock</div>
+          </div>
+        </div>
 
-    // Mobile details
-    const serviceDetailsMobile = document.getElementById('serviceDetailsMobile');
-    const detailTitleMobile = document.getElementById('detailTitleMobile');
-    const detailDescMobile  = document.getElementById('detailDescMobile');
-    const backBtn = document.getElementById('backBtn');
+      </div> <!-- row -->
+    </div> <!-- container -->
+  </div> <!-- container-fluid -->
 
-    function isMobile() {
-      return window.innerWidth < 768;
-    }
+  <script>
+    // Scoped slider JS (only targets elements inside .slider-wrap)
+    document.addEventListener('DOMContentLoaded', () => {
+      const sliderRoot = document.querySelector('.slider-wrap');
+      if (!sliderRoot) return;
 
-    // Clear active class on all items then set active one (desktop visual)
-    function setActiveService(el) {
-      serviceItems.forEach(i => i.classList.remove('active'));
-      if (el) el.classList.add('active');
-    }
+      const cards = Array.from(sliderRoot.querySelectorAll('.card'));
+      const dots = Array.from(sliderRoot.querySelectorAll('.dot'));
 
-    // Populate both desktop and mobile detail panels
-    function populateDetails(title, desc) {
-      detailTitleDesktop.textContent = title;
-      detailDescDesktop.textContent = desc;
-      detailTitleMobile.textContent = title;
-      detailDescMobile.textContent = desc;
-    }
-
-    // Click on a service
-    serviceItems.forEach(item => {
-      item.addEventListener('click', function () {
-        const title = this.dataset.title || 'SERVICE DETAILS';
-        const desc  = this.dataset.desc  || 'No additional details available.';
-
-        setActiveService(this);
-        populateDetails(title, desc);
-
-        if (isMobile()) {
-          // hide services and show mobile details (take its place)
-          servicesCol.classList.add('d-none');
-          serviceDetailsMobile.classList.remove('d-none');
-          // ensure it's visible as full-width (already col-12)
-          // set focus to back button for accessibility
-          backBtn.focus();
-        } else {
-          // Desktop: ensure details panel visible (desktop panel is d-md-block)
-          // nothing else to toggle
+      // Per-slide data (title, description, extra) — edit as needed
+      const slideInfos = [
+        {
+          title: 'Blend A',
+          desc: 'Rich aroma, light roast. Bright citrus notes with mild acidity.',
+          extra: 'Roast: Light • 250g'
+        },
+        {
+          title: 'Blend B',
+          desc: 'Smooth and balanced with a creamy mouthfeel.',
+          extra: 'Roast: Medium • 500g'
+        },
+        {
+          title: 'Signature',
+          desc: 'Our classic, full-bodied blend with a chocolatey finish.',
+          extra: 'Roast: Medium • 250g'
+        },
+        {
+          title: 'Organic',
+          desc: '100% organic, mild taste and eco-friendly farming.',
+          extra: 'Roast: Light-Med • 250g'
+        },
+        {
+          title: 'Limited',
+          desc: 'Rare seasonal small-batch roast. Notes of berries and caramel.',
+          extra: 'Limited release • 200g'
         }
-      });
-    });
+      ];
 
-    // Back button for mobile: restore services and hide mobile details
-    backBtn.addEventListener('click', function () {
-      serviceDetailsMobile.classList.add('d-none');
-      servicesCol.classList.remove('d-none');
-      // return focus to first service for UX
-      const first = document.querySelector('.service-item');
-      if (first) first.focus();
-    });
+      let active = 2; // starting index (center)
+      const total = cards.length;
 
-    // Window resize handler: keep layout consistent when switching sizes
-    window.addEventListener('resize', function () {
-      if (isMobile()) {
-        // on mobile: desktop details should not be forced; ensure mobile details hidden by default
-        // (we only show mobile details after a click)
-        // nothing to change except ensure desktop panel remains hidden by bootstrap classes
-      } else {
-        // on desktop: always show services column and hide mobile details
-        servicesCol.classList.remove('d-none');
-        serviceDetailsMobile.classList.add('d-none');
+      // helper to set ARIA selected on tab buttons
+      function setAriaSelectedOnDots() {
+        dots.forEach((d, i) => d.setAttribute('aria-selected', i === active ? 'true' : 'false'));
       }
+
+      function update() {
+        cards.forEach((card, i) => {
+          // reset classes cleanly while preserving the label span
+          card.className = 'card';
+          const diff = (i - active + total) % total;
+
+          if (diff === 0) {
+            card.classList.add('center');
+            card.setAttribute('aria-hidden', 'false');
+          } else if (diff === total - 1) {
+            card.classList.add('back', 'left');
+            card.setAttribute('aria-hidden', 'true');
+          } else if (diff === 1) {
+            card.classList.add('back', 'right');
+            card.setAttribute('aria-hidden', 'true');
+          } else {
+            card.classList.add('hidden');
+            card.setAttribute('aria-hidden', 'true');
+          }
+        });
+
+        dots.forEach(d => d.classList.remove('active'));
+        if (dots[active]) dots[active].classList.add('active');
+        setAriaSelectedOnDots();
+
+        // Update info columns with the active slide's data
+        const info1 = document.getElementById('info1');
+        const info2 = document.getElementById('info2');
+
+        if (info1) {
+          info1.innerHTML = `
+            <div class="info-title">${escapeHtml(slideInfos[active].title)}</div>
+            <p class="info-desc">${escapeHtml(slideInfos[active].desc)}</p>
+            <div class="info-extra">${escapeHtml(slideInfos[active].extra)}</div>
+          `;
+        }
+
+        // Info2 shows a different/complimentary view (customize as needed)
+        if (info2) {
+          info2.innerHTML = `
+            <div class="info-title">About ${escapeHtml(slideInfos[active].title)}</div>
+            <p class="info-desc">Tasting notes: ${escapeHtml(getTastingNotes(slideInfos[active].desc))}</p>
+            <div class="info-extra">More: ${escapeHtml(slideInfos[active].extra)}</div>
+          `;
+        }
+      }
+
+      // small helper to extract a short tasting-note-ish snippet
+      function getTastingNotes(desc) {
+        // naive: return first sentence or full desc if one sentence
+        const idx = desc.indexOf('.');
+        return idx !== -1 ? desc.slice(0, idx + 1) : desc;
+      }
+
+      // escape any potential text (defensive)
+      function escapeHtml(str) {
+        return String(str)
+          .replaceAll('&', '&amp;')
+          .replaceAll('<', '&lt;')
+          .replaceAll('>', '&gt;')
+          .replaceAll('"', '&quot;')
+          .replaceAll("'", '&#39;');
+      }
+
+      // click/dot handlers
+      dots.forEach((dot, i) => {
+        dot.addEventListener('click', () => {
+          active = i;
+          update();
+        });
+      });
+
+      // clicking a visible card can focus it to center
+      cards.forEach((card, i) => {
+        card.addEventListener('click', () => {
+          active = i;
+          update();
+        });
+      });
+
+      // keyboard navigation (left/right)
+      const frame = sliderRoot.querySelector('.frame');
+      if (frame) {
+        frame.addEventListener('keydown', (e) => {
+          if (e.key === 'ArrowRight') { active = (active + 1) % total; update(); }
+          if (e.key === 'ArrowLeft') { active = (active - 1 + total) % total; update(); }
+        });
+      }
+
+      // Auto-advance (optional) with pause-on-hover
+      const AUTO_MS = 3000;
+      let autoId = setInterval(()=> { active = (active + 1) % total; update(); }, AUTO_MS);
+
+      sliderRoot.addEventListener('mouseenter', () => clearInterval(autoId));
+      sliderRoot.addEventListener('mouseleave', () => {
+        clearInterval(autoId);
+        autoId = setInterval(()=> { active = (active + 1) % total; update(); }, AUTO_MS);
+      });
+
+      // initialize labels from slideInfos (so span.label matches data)
+      cards.forEach((card, i) => {
+        const labelSpan = card.querySelector('.label');
+        if (labelSpan) labelSpan.textContent = slideInfos[i].title;
+      });
+
+      // initial update
+      update();
     });
+  </script>
 
-    // OPTIONAL: initialize first service as active & populate desktop details (comment out if undesired)
-    // const first = document.querySelector('.service-item');
-    // if (first) { setActiveService(first); populateDetails(first.dataset.title, first.dataset.desc); }
-  })();
-</script>
 
+
+  <!-- Bootstrap Bundle (includes Popper) -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" defer></script>
+  <script src="script.js"></script>
 </body>
 
 </html>
