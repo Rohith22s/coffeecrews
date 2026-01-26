@@ -10,6 +10,16 @@
       font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
     }
 
+    /* Chrome, Edge, Safari */
+    ::-webkit-scrollbar {
+      display: none;
+    }
+
+    /* Firefox */
+    html {
+      scrollbar-width: none;
+    }
+
     /* NAVBAR (light glass + subtle blur) */
     .navbar-glass {
       background: rgba(255, 255, 255, 0.65);
@@ -445,3 +455,40 @@
       }
 
     }
+
+    .col_service {
+      height: 25vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      user-select: none;
+      border-radius: 20px;
+    }
+
+    /* slightly smaller blocks on phones */
+    @media (max-width: 767px) {
+      .col_service {
+        height: 20vh;
+      }
+    }
+
+    /* small visual for active service on desktop */
+    .service-item.active {
+      box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.12);
+      border-color: #0d6efd;
+    }
+
+    /* optional smooth show/hide */
+    .fade-in {
+      transition: opacity .22s ease-in;
+      opacity: 1;
+    }
+
+    .fade-out {
+      transition: opacity .22s ease-out;
+      opacity: 0;
+    }
+
+
+    
