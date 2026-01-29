@@ -11,7 +11,11 @@
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
 
   <style>
-       /* ===== SLIDER ===== */
+    .col_service {
+  display: flex;
+  flex-direction: column;   /* 👈 THIS is the key */
+  gap: 6px;
+}
 
   </style>
 </head>
@@ -49,7 +53,7 @@
   <!-- OFFCANVAS MENU (RIGHT) -->
   <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
     <div class="offcanvas-header">
-      <h5 class="offcanvas-title fw-bold" id="offcanvasNavbarLabel">Menu</h5>
+      <h6 class="offcanvas-title fw-bold" id="offcanvasNavbarLabel">Menu</h6>
       <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
     </div>
 
@@ -105,61 +109,83 @@
 
       <!-- SERVICES (left on desktop; full width on mobile) -->
       <div id="servicesColumn" class="col-md-8 col-12 border py-3 rounded-5">
-        <h3>SERVICES</h3>
+        <h6>SERVICES</h6>
 
         <div id="servicesGrid" class="row g-2">
           <!-- 9 service items -->
           <!-- Each .service-item contains data-title and data-desc used to populate details -->
           <div class="col-6 col-md-4">
             <div class="col_service border service-item" data-title="Service 1" data-desc="Details for Service 1">
-              Service 1
+              <h6>Website Development</h6>
+              <p>We code sleek, responsive websites that load fast and look sharp.
+                Your digital presence, optimized for every click.</p>
             </div>
           </div>
 
           <div class="col-6 col-md-4">
             <div class="col_service border service-item" data-title="Service 2" data-desc="Details for Service 2">
-              Service 2
+              <h6>Mobile App Development</h6>
+              <p>From idea to app store, we craft mobile experiences that scale.
+                Smart, secure, and built for performance.</p>
             </div>
           </div>
 
           <div class="col-6 col-md-4">
             <div class="col_service border service-item" data-title="Service 3" data-desc="Details for Service 3">
-              Service 3
+              <h6>IT Support</h6>
+              <p>Tech glitches? We fix them before they slow you down.
+                Reliable support that keeps your systems humming.</p>
             </div>
           </div>
 
           <div class="col-6 col-md-4">
             <div class="col_service border service-item" data-title="Service 4" data-desc="Details for Service 4">
-              Service 4
+              <h6>Networking Setup</h6>
+              <p>Strong connections, seamless communication.
+                We design networks that are fast, secure, and future‑ready.
+              </p>
             </div>
           </div>
 
           <div class="col-6 col-md-4">
             <div class="col_service border service-item" data-title="Service 5" data-desc="Details for Service 5">
-              Service 5
+              <h6>Cloud Services</h6>
+              <p>Migrate, manage, and scale in the cloud with ease.
+                Your data, always accessible and always safe.
+              </p>
             </div>
           </div>
 
           <div class="col-6 col-md-4">
             <div class="col_service border service-item" data-title="Service 6" data-desc="Details for Service 6">
-              Service 6
+              <h6>Data Backup & Recovery</h6>
+              <p>Never lose a byte.
+                We back up your data and recover it when disaster strikes.
+              </p>
             </div>
           </div>
 
           <div class="col-6 col-md-4">
             <div class="col_service border service-item" data-title="Service 7" data-desc="Details for Service 7">
-              Service 7
+              <h6> E‑commerce Setup</h6>
+              <p>Launch your online store with speed and style.
+                Payments, products, and customers — all in sync.</p>
             </div>
           </div>
 
           <div class="col-6 col-md-4">
             <div class="col_service border service-item" data-title="Service 8" data-desc="Details for Service 8">
-              Service 8
+              <h6>Automation Services</h6>
+              <p>Automate the repetitive, focus on the creative.
+                We streamline workflows with smart scripts and tools.
+              </p>
             </div>
           </div>
           <div class="col-6 col-md-4">
             <div class="col_service border service-item" data-title="Service 9" data-desc="Details for Service 9">
-              Service 9
+              <h6>Training & Workshops</h6>
+              <p>Empower your team with IT skills that matter.
+                From coding basics to cloud know‑how, we teach tech fluency.</p>
             </div>
           </div>
         </div>
@@ -168,7 +194,7 @@
       <!-- SERVICE DETAILS (desktop) -->
       <div id="serviceDetailsDesktop" class="col-md-4 d-none d-md-block">
         <div class="container border h-100 rounded-5">
-          <h3 id="detailTitleDesktop">SERVICE DETAILS</h3>
+          <h6 id="detailTitleDesktop">SERVICE DETAILS</h6>
           <p id="detailDescDesktop">Select a service to see details</p>
         </div>
       </div>
@@ -177,7 +203,7 @@
       <!-- This panel will be toggled in mobile; it's hidden on md+ via d-md-none -->
       <div id="serviceDetailsMobile" class="col-12 d-none d-md-none border py-3 rounded-5">
         <div class="d-flex justify-content-between align-items-center mb-2">
-          <h3 id="detailTitleMobile">SERVICE DETAILS</h3>
+          <h6 id="detailTitleMobile">SERVICE DETAILS</h6>
           <button id="backBtn" class="btn btn-outline-secondary btn-sm">Back</button>
         </div>
         <p id="detailDescMobile">Select a service to see details</p>
@@ -240,12 +266,216 @@
           </div>
         </div>
 
-      </div> <!-- row -->
-    </div> <!-- container -->
-  </div> <!-- container-fluid -->
+      </div>
+    </div>
+  </div>
+  <div class="container-fluid my-2">
+    <div class="container-l border py-3 rounded-4">
+      <div class="row">
+        <div class="col  radiu">
+          <div class="container-fluid text-center">
+            <div class="row">
+              <div class="col  radius-3">
+                <img src="" alt="per" class="rounded-circle border">
+              </div>
+              <div class="col  radius-3">
+                Column
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col  radius-3">
+          <div class="container-fluid text-center">
+            <div class="row">
+              <div class="col  radius-3">
+                <img src="" alt="per" class="rounded-circle border">
+              </div>
+              <div class="col  radius-3">
+                Column
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col radius-3">
+          <div class="container-fluid text-center">
+            <div class="row">
+              <div class="col  radius-3">
+                <img src="" alt="per" class="rounded-circle border">
+              </div>
+              <div class="col radius-3">
+                Column
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="container-fluid border rounded-3 py-3">
+    <div class="container text-center">
+      <div class="row">
+        <div class="col border-end">
+          Column
+        </div>
+        <div class="col">
+          Column
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="container-fluid text-center my-1">
+    <h6>Team</h6>
+    <div class="container">
+      <dIV class="row">
+        <div class="col">
+          <div class="row align-items-center">
+
+            <!-- LEFT COLUMN -->
+            <div class="col-3">
+              Column
+            </div>
+
+            <!-- MIDDLE COLUMN -->
+            <div class="col-9 col-md-6 text-center">
+              Column
+            </div>
+
+            <!-- ICONS -->
+            <div class="col-md-3 d-flex flex-row flex-md-column 
+                                justify-content-end align-items-center gap-2">
+              <span>icon</span>
+              <span>icon</span>
+              <span>icon</span>
+            </div>
+
+          </div>
+        </div>
+        <div class="col">
+          <div class="row align-items-center">
+
+            <!-- LEFT COLUMN -->
+            <div class="col-3">
+              Column
+            </div>
+
+            <!-- MIDDLE COLUMN -->
+            <div class="col-9 col-md-6 text-center">
+              Column
+            </div>
+
+            <!-- ICONS -->
+            <div class="col-md-3 d-flex flex-row flex-md-column 
+                                justify-content-end align-items-center gap-2">
+              <span>icon</span>
+              <span>icon</span>
+              <span>icon</span>
+            </div>
+
+          </div>
+        </div>
+      </DIV>
+      <dIV class="row">
+        <div class="col">
+          <div class="row align-items-center">
+
+            <!-- LEFT COLUMN -->
+            <div class="col-3">
+              Column
+            </div>
+
+            <!-- MIDDLE COLUMN -->
+            <div class="col-9 col-md-6 text-center">
+              Column
+            </div>
+
+            <!-- ICONS -->
+            <div class="col-md-3 d-flex flex-row flex-md-column 
+                                justify-content-end align-items-center gap-2">
+              <span>icon</span>
+              <span>icon</span>
+              <span>icon</span>
+            </div>
+
+          </div>
+        </div>
+        <div class="col">
+          <div class="row align-items-center">
+
+            <!-- LEFT COLUMN -->
+            <div class="col-3">
+              Column
+            </div>
+
+            <!-- MIDDLE COLUMN -->
+            <div class="col-9 col-md-6 text-center">
+              Column
+            </div>
+
+            <!-- ICONS -->
+            <div class="col-md-3 d-flex flex-row flex-md-column 
+                                justify-content-end align-items-center gap-2">
+              <span>icon</span>
+              <span>icon</span>
+              <span>icon</span>
+            </div>
+
+          </div>
+        </div>
+      </DIV>
+      <dIV class="row">
+        <div class="col">
+          <div class="row align-items-center">
+
+            <!-- LEFT COLUMN -->
+            <div class="col-3">
+              Column
+            </div>
+
+            <!-- MIDDLE COLUMN -->
+            <div class="col-9 col-md-6 text-center">
+              Column
+            </div>
+
+            <!-- ICONS -->
+            <div class="col-md-3 d-flex flex-row flex-md-column 
+                                justify-content-end align-items-center gap-2">
+              <span>icon</span>
+              <span>icon</span>
+              <span>icon</span>
+            </div>
+
+          </div>
+        </div>
+        <div class="col">
+          <div class="row align-items-center">
+
+            <!-- LEFT COLUMN -->
+            <div class="col-3">
+              Column
+            </div>
+
+            <!-- MIDDLE COLUMN -->
+            <div class="col-9 col-md-6 text-center">
+              Column
+            </div>
+
+            <!-- ICONS -->
+            <div class="col-md-3 d-flex flex-row flex-md-column 
+                                justify-content-end align-items-center gap-2">
+              <span>icon</span>
+              <span>icon</span>
+              <span>icon</span>
+            </div>
+
+          </div>
+        </div>
+      </DIV>
+    </div>
+
+  </div>
 
   <script>
-   
+
   </script>
 
 
