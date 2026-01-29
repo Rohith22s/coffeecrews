@@ -11,12 +11,7 @@
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
 
   <style>
-    .col_service {
-  display: flex;
-  flex-direction: column;   /* 👈 THIS is the key */
-  gap: 6px;
-}
-
+    
   </style>
 </head>
 
@@ -38,10 +33,10 @@
         <ul class="navbar-nav gap-2 align-items-center">
           <li class="nav-item"><a class="nav-link active" href="#">Home</a></li>
           <li class="nav-item"><a class="nav-link" href="#">Info</a></li>
-          <li class="nav-item"><a class="nav-link" href="#">Services</a></li>
-          <li class="nav-item"><a class="nav-link" href="#">Project</a></li>
+          <li class="nav-item"><a class="nav-link" href="#service">Services</a></li>
+          <li class="nav-item"><a class="nav-link" href="#Project">Project</a></li>
           <li class="nav-item"><a class="nav-link" href="#">Contact</a></li>
-          <li class="nav-item"><a class="nav-link" href="#">Team</a></li>
+          <li class="nav-item"><a class="nav-link" href="#Team">Team</a></li>
         </ul>
       </div>
     </div>
@@ -61,10 +56,10 @@
       <ul class="navbar-nav">
         <li class="nav-item"><a class="nav-link active" href="#">Home</a></li>
         <li class="nav-item"><a class="nav-link" href="#">Info</a></li>
-        <li class="nav-item"><a class="nav-link" href="#">Services</a></li>
-        <li class="nav-item"><a class="nav-link" href="#">Project</a></li>
+        <li class="nav-item"><a class="nav-link" href="#service">Services</a></li>
+        <li class="nav-item"><a class="nav-link" href="#Project">Project</a></li>
         <li class="nav-item"><a class="nav-link" href="#">Contact</a></li>
-        <li class="nav-item"><a class="nav-link" href="#">Team</a></li>
+        <li class="nav-item"><a class="nav-link" href="#Team">Team</a></li>
         <li class="nav-item"><a class="nav-link" href="#">Careers</a></li>
         <li class="nav-item"><a class="nav-link" href="#">Blog</a></li>
         <li class="nav-item"><a class="nav-link" href="#">Support</a></li>
@@ -92,7 +87,7 @@
     </div>
   </div>
 
-  <div class="container-fluid container_info my-1">
+  <div class="container-fluid container_info my-1" id="service">
     <div class="row">
       <div class="image_info col-5" style="margin-left: 1%;">
         <img src="https://images.unsplash.com/photo-1509042239860-f550ce710b93" alt="coffee image"
@@ -115,77 +110,55 @@
           <!-- 9 service items -->
           <!-- Each .service-item contains data-title and data-desc used to populate details -->
           <div class="col-6 col-md-4">
-            <div class="col_service border service-item" data-title="Service 1" data-desc="Details for Service 1">
+            <div class="col_service border service-item" data-title="Website Development" data-desc="Details for Website Development">
               <h6>Website Development</h6>
-              <p>We code sleek, responsive websites that load fast and look sharp.
-                Your digital presence, optimized for every click.</p>
             </div>
           </div>
 
           <div class="col-6 col-md-4">
-            <div class="col_service border service-item" data-title="Service 2" data-desc="Details for Service 2">
+            <div class="col_service border service-item" data-title="Mobile App Development" data-desc="Details for Mobile App Development">
               <h6>Mobile App Development</h6>
-              <p>From idea to app store, we craft mobile experiences that scale.
-                Smart, secure, and built for performance.</p>
             </div>
           </div>
 
           <div class="col-6 col-md-4">
-            <div class="col_service border service-item" data-title="Service 3" data-desc="Details for Service 3">
+            <div class="col_service border service-item" data-title="IT Support" data-desc="Details for IT Support">
               <h6>IT Support</h6>
-              <p>Tech glitches? We fix them before they slow you down.
-                Reliable support that keeps your systems humming.</p>
             </div>
           </div>
 
           <div class="col-6 col-md-4">
-            <div class="col_service border service-item" data-title="Service 4" data-desc="Details for Service 4">
+            <div class="col_service border service-item" data-title="Networking Setup" data-desc="Details for Networking Setup">
               <h6>Networking Setup</h6>
-              <p>Strong connections, seamless communication.
-                We design networks that are fast, secure, and future‑ready.
-              </p>
             </div>
           </div>
 
           <div class="col-6 col-md-4">
-            <div class="col_service border service-item" data-title="Service 5" data-desc="Details for Service 5">
+            <div class="col_service border service-item" data-title="Cloud Services" data-desc="Details for Cloud Services">
               <h6>Cloud Services</h6>
-              <p>Migrate, manage, and scale in the cloud with ease.
-                Your data, always accessible and always safe.
-              </p>
             </div>
           </div>
 
           <div class="col-6 col-md-4">
-            <div class="col_service border service-item" data-title="Service 6" data-desc="Details for Service 6">
+            <div class="col_service border service-item" data-title="Data Backup & Recovery" data-desc="Details for Data Backup & Recovery">
               <h6>Data Backup & Recovery</h6>
-              <p>Never lose a byte.
-                We back up your data and recover it when disaster strikes.
-              </p>
             </div>
           </div>
 
           <div class="col-6 col-md-4">
-            <div class="col_service border service-item" data-title="Service 7" data-desc="Details for Service 7">
+            <div class="col_service border service-item" data-title="E‑commerce Setup" data-desc="Details for E‑commerce Setup">
               <h6> E‑commerce Setup</h6>
-              <p>Launch your online store with speed and style.
-                Payments, products, and customers — all in sync.</p>
             </div>
           </div>
 
           <div class="col-6 col-md-4">
-            <div class="col_service border service-item" data-title="Service 8" data-desc="Details for Service 8">
+            <div class="col_service border service-item" data-title="Automation Services" data-desc="Details for Automation Services">
               <h6>Automation Services</h6>
-              <p>Automate the repetitive, focus on the creative.
-                We streamline workflows with smart scripts and tools.
-              </p>
             </div>
           </div>
           <div class="col-6 col-md-4">
-            <div class="col_service border service-item" data-title="Service 9" data-desc="Details for Service 9">
+            <div class="col_service border service-item" data-title="Training & Workshops" data-desc="Details for Training & Workshops">
               <h6>Training & Workshops</h6>
-              <p>Empower your team with IT skills that matter.
-                From coding basics to cloud know‑how, we teach tech fluency.</p>
             </div>
           </div>
         </div>
@@ -220,7 +193,7 @@
     </div>
 
   </div>
-  <div class="container-fluid border py-3">
+  <div class="container-fluid border py-3" id="Project">
     <div class="container-fluid">
       <div class="row g-3 align-items-start">
         <!-- SLIDER COLUMN -->
@@ -323,7 +296,7 @@
       </div>
     </div>
   </div>
-  <div class="container-fluid text-center my-1">
+  <div class="container-fluid text-center my-1"id="Team">
     <h6>Team</h6>
     <div class="container">
       <dIV class="row">
@@ -475,10 +448,23 @@
   </div>
 
   <script>
-
+    // Fallback JS for smooth scrolling (in case CSS doesn't work)
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function(e) {
+        e.preventDefault();
+        const targetId = this.getAttribute('href');
+        if (targetId === '#') return;
+        
+        const target = document.querySelector(targetId);
+        if (target) {
+          target.scrollIntoView({
+            behavior: 'smooth',
+            block: 'start'
+          });
+        }
+      });
+    });
   </script>
-
-
 
   <!-- Bootstrap Bundle (includes Popper) -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" defer></script>
