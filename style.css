@@ -9,11 +9,6 @@
       -webkit-font-smoothing: antialiased;
       font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
     }
-    .col_service {
-      display: flex;
-      flex-direction: column;   /* 👈 THIS is the key */
-      gap: 6px;
-    }
 
     /* Prevent content hiding under fixed navbar */
     [id] {
@@ -502,22 +497,8 @@
       }
     }
 
-    /* small visual for active service on desktop */
-    .service-item.active {
-      box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.12);
-      border-color: #0d6efd;
-    }
 
-    /* optional smooth show/hide */
-    .fade-in {
-      transition: opacity .22s ease-in;
-      opacity: 1;
-    }
 
-    .fade-out {
-      transition: opacity .22s ease-out;
-      opacity: 0;
-    }
 
     .slider-wrap {
     width: 100%;
@@ -689,5 +670,59 @@
 .info-desc { color: #444; margin: 0 0 8px 0; }
 .info-extra { color: #777; font-size: .9rem; }
 
+/* ===== SERVICE FLIP CARDS ===== */
 
+    .service-flip {
+      width: 100%;
+      height: 140px;
+      perspective: 1000px;
+    }
+
+    .service-inner {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      transition: transform 0.8s ease;
+      transform-style: preserve-3d;
+    }
+
+    /* hover flip */
+    .service-flip:hover .service-inner {
+      transform: rotateY(180deg);
+    }
+
+    /* front & back */
+    .service-front,
+    .service-back {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      border-radius: 18px;
+      backface-visibility: hidden;
+      display: flex;
+      flex-direction: column;
+      /* FIX */
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 15px;
+      text-align: center;
+      border: 1px solid #000;
+    }
+
+    /* FRONT */
+    .service-front {
+      background: #ffffff;
+    }
+
+    /* BACK */
+    .service-back {
+      background: #f8f9fa;
+      transform: rotateY(180deg);
+    }
+
+    .service-back p {
+      font-size: 0.85rem;
+      margin-top: 6px;
+    }
     
